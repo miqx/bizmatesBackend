@@ -28,7 +28,7 @@ class WeatherController extends Controller
 
     /**
      * @param string $city
-     * @return json
+     * @return array
      */
     public function getPlaceWeather(string $city) : array {
 
@@ -49,7 +49,7 @@ class WeatherController extends Controller
 
     /**
      * @param string $city
-     * @return json
+     * @return array
      */
     public function getPlaceData(string $city) : array {
 

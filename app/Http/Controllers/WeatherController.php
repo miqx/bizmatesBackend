@@ -27,27 +27,28 @@ class WeatherController extends Controller
      * @param string $city
      * @return json
      */
-    public function getPlaceWeather(string $city) : object {
+    public function getPlaceWeather(string $city) : array {
 
         try {
             $response = Http::get('http://api.openweathermap.org/data/2.5/forecast', [
                 'appid' => env('OPENWEATHER_API_KEY'), // API KEY
-                'q' => $city  // city name
+                'q' => $city,  // city name,
+                'cnt' => 5 // limited the count to 5
             ]);
 
         } catch (\Exception $ex) {
                 throw $ex;
         }
 
-
-        return json_decode($response->getBody());
+        $result = json_decode($response->getBody());
+        return $result->list;
     }
 
     /**
      * @param string $city
      * @return json
      */
-    public function getPlaceData(string $city) : object {
+    public function getPlaceData(string $city) : array {
 
         try {
             $response = Http::withHeaders([
@@ -65,6 +66,7 @@ class WeatherController extends Controller
         }
 
 
-        return json_decode($response->getBody());
+        $result =  json_decode($response->getBody());
+        return $result->results;
     }
 }

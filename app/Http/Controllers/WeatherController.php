@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
 class WeatherController extends Controller
 {
 
+    /**
+     * @param Request $request
+     * @return Response
+     */
     public function index(Request $request) {
 
         $this->validate($request, [
